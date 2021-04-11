@@ -77,8 +77,8 @@ Route::middleware(['jwt.verify'])->group(function () {
    Route::get('transactions.user', [TransactionController::class, 'getCurrentUserTransactions']); 
 });*/
 
-Route::resource('transactions.categories', TransactionCategoryController::class)->only('index')->names('transactiones.categories');
-Route::resource('transactions.sellers', TransactionSellerController::class)->only('index')->names('transactiones.sellers');
+Route::resource('transactions.categories', TransactionCategoryController::class)->only('index')->names('transactions.categories');
+Route::resource('transactions.sellers', TransactionSellerController::class)->only('index')->names('transactions.sellers');
 
 /** BUYERS */
 Route::resource('buyers', BuyerController::class)->only('index','show')->names('buyers');
