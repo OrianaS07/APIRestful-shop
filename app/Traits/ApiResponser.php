@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\UserCollection;
+use Illuminate\Support\Facades\Cache;
 
 trait ApiResponser{
     private function successResponse($data, $code){
@@ -19,6 +20,8 @@ trait ApiResponser{
 
     protected function showAll($collection, $code = 200){
         //$collection = $this->sortData($collection);
+        $collection = $this->cacheResponse($collection);
+        
         return $this->successResponse($collection, $code);
     }
 
@@ -40,5 +43,14 @@ trait ApiResponser{
 
     protected function userTokenJWT($token, $user, $code=200){
         return response()->json(['user'=>$user, 'TokenJWT'=>$token],$code);
+    }
+
+    protected function cacheResponse($data){
+        $url = request()->url();
+
+        return Cache::remember($url, 60 , function () use ($data) {
+            return $data;
+        });
+        
     }
 }

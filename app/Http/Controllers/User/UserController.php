@@ -25,7 +25,8 @@ class UserController extends ApiController
 {
     // mostrar un usuario
     public function index(){
-        return new UserCollection(User::paginate());
+        $users = User::all();
+        return $this->showAll(new UserCollection($users));
     }
 
     //Verifica si el usuario esta autentificado - JWT
