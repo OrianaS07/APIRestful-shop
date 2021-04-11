@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route(login.google)}}">google</a>
+    <a href="{{route('login.google')}}">google</a>
+    <a href="{{route('login.github')}}">github</a>
+    <a href="{{route('login.facebook')}}">facebook</a>
 </body>
 </html>

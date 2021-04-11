@@ -78,7 +78,7 @@ class UserController extends ApiController
             'verification_token' => User::generarVerificationToken()
         ]);
 
-        //$token = JWTAuth::fromUser($user);
+        $token = JWTAuth::fromUser($user);
         $userR = new UserResource($user);
         return $this->showOne($userR);
     }
