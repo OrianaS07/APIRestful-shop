@@ -30,6 +30,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
+Route::get('prueba', function () {
+    return view('prueba');
+});
+
 /** USERS */
 Route::resource('users', UserController::class)->except('create','edit')->names('users');
 Route::get('users/verify/{token}',[UserController::class, 'verify'])->name('verify');
@@ -99,7 +103,7 @@ Route::resource('sellers.transactions', SellerTransactionController::class)->onl
 
 /** REDES SOCIALES */
 Route::get('login.google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('login.google.callback');
+Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 Route::get('login.facebook', [LoginController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('login/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->name('login.facebook.callback');
